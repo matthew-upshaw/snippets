@@ -6,6 +6,7 @@ asking = True
 player_win = False
 starting_attempts = 7
 answer_choices = ['y','n']
+times_played = 0
 
 while game_on:
     number = random.randint(1, 100)
@@ -13,8 +14,9 @@ while game_on:
 
     print(f"Welcome to the python number guessing game!\
         \nI'm thinking of a number between 1 and 100, and I'll give you {starting_attempts} attempts to guess it correctly.")
-    
-    playing = str(input('Would you like to play? Enter y/n: '))
+
+    if times_played == 0:
+        playing = str(input('Would you like to play? Enter y/n: '))
 
     while asking:
         if playing not in answer_choices:
@@ -63,6 +65,8 @@ while game_on:
     if not player_win:
         print(f'I win! My number was {number}. You were only {abs(player_guess-number)} off!')
 
+    times_played += 1
+
     play_again = str(input(f'\nWould you like to play again? Enter y/n: '))
     asking = True
 
@@ -76,4 +80,4 @@ while game_on:
         game_on = False
 
 
-print('\nThanks, see you next time!')
+print(f'\nYou played {times_played} times. See you next time!')
